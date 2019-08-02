@@ -5,7 +5,7 @@
       <div class="loginForm">
         <el-form :model="loginForm" status-icon :rules="rules" ref="loginForm" class="demo-ruleForm">
           <el-form-item prop="username">
-            <el-input type="text" v-model="loginFrom.username" placeholder="请输入用户名" auto-complete="off">
+            <el-input type="text" v-model="loginForm.username" placeholder="请输入用户名" auto-complete="off">
               <template slot="prepend">
                 <span><i class="manage manageusername"></i></span>
               </template>
@@ -34,6 +34,9 @@ export default {
       if (value === '') {
         callback(new Error('请输入用户名'));
       } else {
+        if(value != 'admin'){
+           callback(new Error('当前用户名不存在'));
+        }
         callback();
       }
     };
@@ -65,10 +68,12 @@ export default {
     login(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert('submit!');
+          //参数通过url传值-query
+          // this.$router.push({path:'/main',query:{username:this.loginForm.username}})
+          //参数不不通过url传值-params
+          this.$router.push({name:'main',params:{username:this.loginForm.username}}) 
         } else {
-          console.log('error submit!!');
-          return false;
+          return false
         }
       });
     }

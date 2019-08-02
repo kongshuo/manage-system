@@ -13,6 +13,12 @@ export default new Router({
     {
       path:'/login',
       component:reslove => require(['../views/login/login'],reslove)
+    },
+    //首页
+    {
+      path:'/main',
+      name:'main',
+      component:reslove => require(['../views/page/main'],reslove)
     }
   ]
 })
