@@ -1,0 +1,84 @@
+@font-face {font-family: "manage";
+  src: url('iconfont.eot?t=1564661118801'); /* IE9 */
+  src: url('iconfont.eot?t=1564661118801#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1564661118801') format('woff'),
+  url('iconfont.ttf?t=1564661118801') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1564661118801#manage') format('svg'); /* iOS 4.1- */
+}
+
+.manage {
+  font-family: "manage" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.managebiaodan:before {
+  content: "\e65c";
+}
+
+.manageshouye:before {
+  content: "\e607";
+}
+
+.manageguzhang:before {
+  content: "\e665";
+}
+
+.managequanping:before {
+  content: "\e62a";
+}
+
+.managetuozhuai:before {
+  content: "\e620";
+}
+
+.managemenu:before {
+  content: "\e630";
+}
+
+.manageart2:before {
+  content: "\e8f4";
+}
+
+.managexiaoxi:before {
+  content: "\e60d";
+}
+
+.manageshuliang:before {
+  content: "\e61b";
+}
+
+.managecaidan:before {
+  content: "\e66e";
+}
+
+.managesmile:before {
+  content: "\e61c";
+}
+
+.manageguojihua:before {
+  content: "\e656";
+}
+
+.manageyonghu:before {
+  content: "\e60b";
+}
+
+.managetubiao3:before {
+  content: "\e600";
+}
+
+.managemima:before {
+  content: "\e608";
+}
+
+.managexiaoxi1:before {
+  content: "\e752";
+}
+
+.manageusername:before {
+  content: "\e601";
+}
+
