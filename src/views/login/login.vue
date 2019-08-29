@@ -22,6 +22,7 @@
             <el-button type="primary" @click="login('loginForm')" style="width:100%;">登 录</el-button>
           </el-form-item>
         </el-form>
+        <p class="loginHint">tips: 请用admin登录，密码是1</p>
       </div>
     </div>
   </div>
@@ -109,6 +110,10 @@ export default {
 }
 .loginForm{
   padding: 30px;
+}
+.loginHint{
+  font-size: 12px;
+  color: #f00;
 }
 </style>
 
