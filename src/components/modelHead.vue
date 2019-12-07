@@ -7,19 +7,19 @@
     <div class="fr">
       <div class="logo-mess">
         <el-tooltip content="全屏" placement="bottom">
-          <a href="javascript:void(0)" title="全屏"><i class="manage managequanping"></i></a>
+          <a href="javascript:void(0)" title="全屏" @click="screen()"><i class="manage managequanping"></i></a>
         </el-tooltip>
         <el-tooltip content="未读消息" placement="bottom">
-          <a href="javascript:void(0)" class="unread"><i class="manage managexiaoxi1"></i><span class="circle"></span></a>
+          <a href="javascript:void(0)" class="unread" @click="unread()"><i class="manage managexiaoxi1"></i><span class="circle"></span></a>
         </el-tooltip>
         <img class="user-logo" src="../assets/images/user-logo.jpg" alt="logo"/>
-        <el-dropdown trigger="click">
+        <el-dropdown trigger="click" @command="dropHandle">
           <span class="el-dropdown-link">
             {{usermess}}<i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item v-for="(item,index) in userlist" :key="index">{{item}}</el-dropdown-item>
-            <el-dropdown-item divided>退出登录</el-dropdown-item>
+            <el-dropdown-item divided command="logout">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </div>
@@ -30,18 +30,68 @@
 export default {
   data(){
     return {
-      usermess:'',
-      userlist:['个人信息']
+      usermess:'',           //用户名
+      userlist:['个人信息'],  //用户信息
+      isFullScreen:false     //是否全屏，默认非全屏
     }
   },
   methods: {
     getUsermess(){
-      this.usermess = this.$route.params.username;
+      this.usermess = localStorage.getItem('username');
+    },
+    //全屏点击
+    screen(){
+      if(!this.isFullScreen){
+        this.fullScreen();
+      }else{
+        this.exitScreen();
+      }
+      this.isFullScreen = !this.isFullScreen; //改变当前屏幕状态 
+    },
+    //全屏事件
+    fullScreen(){
+      let ele = document.documentElement;
+      if(ele.requestFullscreen){       //高版本浏览器
+        ele.requestFullscreen();
+      }else if(ele.msRequestFullscreen){ //ie浏览器
+        ele.msRequestFullscreen();
+      }else if(ele.mozRequestFullScreen){ //firefox
+        ele.mozRequestFullScreen();
+      }else if(ele.webkitRequestFullscreen){ //webkit内核浏览器
+        ele.webkitRequestFullscreen();
+      }
+    },
+    //退出全屏事件
+    exitScreen(){
+      if (document.exitFullscreen) {
+          document.exitFullscreen();
+      } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+      } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+      }
+    },
+    //未读消息
+    unread(){
+      this.$router.push({path:'/unread',query:{unreadNum:'1'}})
+    },
+    //用户信息下拉菜单点击事件
+    dropHandle(command){
+      if(command=='logout'){
+        this.logout();
+      }
+    },
+    //退出登录
+    logout(){
+       localStorage.removeItem('username') //清除登录用户信息
+       this.$router.push({path:'/login'})
     }
   },
   created() {
     this.getUsermess();
-  },
+  }
 }
 </script>
 <style lang="less" scoped>

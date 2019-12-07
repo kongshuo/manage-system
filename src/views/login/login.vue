@@ -69,10 +69,8 @@ export default {
     login(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          //参数通过url传值-query
-          // this.$router.push({path:'/main',query:{username:this.loginForm.username}})
-          //参数不不通过url传值-params
-          this.$router.push({name:'main',params:{username:this.loginForm.username}}) 
+          localStorage.setItem('username',this.loginForm.username) //存入浏览器缓存localStorage中
+          this.$router.push({name:'main'}) 
         } else {
           return false
         }

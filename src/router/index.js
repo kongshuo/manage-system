@@ -3,6 +3,11 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
+//对应组件
+const login = reslove => require(['../views/login/login'],reslove)//登录页
+const main = reslove => require(['../views/page/main'],reslove) //主页
+const unread = reslove => require(['../views/page/unread'],reslove) //未读消息
+//全局路由
 export default new Router({
   routes:[
     {
@@ -12,13 +17,21 @@ export default new Router({
     //登录页
     {
       path:'/login',
-      component:reslove => require(['../views/login/login'],reslove)
+      component:login
     },
     //首页
     {
       path:'/main',
       name:'main',
-      component:reslove => require(['../views/page/main'],reslove)
+      component:main,
+      children:[
+        //未读信息
+        {
+          path:'/unread',
+          name:'unread',
+          component:unread
+        }
+      ]
     }
   ]
 })
