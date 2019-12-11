@@ -6,6 +6,18 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.config.productionTip = false
 Vue.use(ElementUI,{ size: 'small' })
+
+//路由全局钩子函数
+// router.beforeEach((to,from,next)=>{
+//   let username = localStorage.getItem('username');
+//   if(!username && to.path !=='/login'){
+//     next('/login')
+//   }else if(username !== 'admin'){
+//     next('/login')
+//   }else{
+//     next()
+//   }
+// })
 new Vue({
   router,
   store,

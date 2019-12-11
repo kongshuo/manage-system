@@ -22,7 +22,7 @@
             <el-button type="primary" @click="login('loginForm')" style="width:100%;">登 录</el-button>
           </el-form-item>
         </el-form>
-        <p class="loginHint">tips: 请用admin登录，密码是1</p>
+        <p class="loginHint">tips: 请用admin登录，密码是1，其他用户会被拦截</p>
       </div>
     </div>
   </div>
@@ -35,9 +35,9 @@ export default {
       if (value === '') {
         callback(new Error('请输入用户名'));
       } else {
-        if(value != 'admin'){
-           callback(new Error('当前用户名不存在'));
-        }
+        // if(value != 'admin'){
+        //    callback(new Error('当前用户名不存在'));
+        // }
         callback();
       }
     };
