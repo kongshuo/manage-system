@@ -35,18 +35,23 @@ export default {
       if (value === '') {
         callback(new Error('请输入用户名'));
       } else {
-        // if(value != 'admin'){
-        //    callback(new Error('当前用户名不存在'));
-        // }
-        callback();
+        if (value != 'admin') {
+           callback(new Error('当前用户名不存在'));
+        } else {
+          callback();
+        }
       }
     };
     //验证password
     var vaildatepassword = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入密码'));
-      }else {
-        callback();
+      } else {
+        if(value != 1){
+          callback(new Error('密码不正确,请从新输入!'));
+        }else{
+          callback();
+        }
       }
     };
     return {
@@ -76,6 +81,9 @@ export default {
         }
       });
     }
+  },
+  created(){
+    localStorage.removeItem('username');
   }
 }
 </script>

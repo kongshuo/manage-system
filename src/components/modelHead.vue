@@ -18,7 +18,7 @@
             {{usermess}}<i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item v-for="(item,index) in userlist" :key="index">{{item}}</el-dropdown-item>
+            <el-dropdown-item v-for="(item,index) in userlist" :key="index" :command="item">{{item}}</el-dropdown-item>
             <el-dropdown-item divided command="logout">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
@@ -31,7 +31,7 @@ export default {
   data(){
     return {
       usermess:'',           //用户名
-      userlist:['个人信息'],  //用户信息
+      userlist:['个人信息','111','222'],  //用户信息
       isFullScreen:false     //是否全屏，默认非全屏
     }
   },
@@ -81,12 +81,22 @@ export default {
     dropHandle(command){
       if(command=='logout'){
         this.logout();
+      }else if(command=='个人信息'){
+        this.$router.push({path:'/usermessage'})
+      }else{
+        this.$message(`这是${command}`);
       }
     },
     //退出登录
     logout(){
-       localStorage.removeItem('username') //清除登录用户信息
-       this.$router.push({path:'/login'})
+      this.$confirm('确认退出?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+            localStorage.removeItem('username') //清除登录用户信息
+            this.$router.push({path:'/login'})
+        }).catch(()=>{});
     }
   },
   created() {

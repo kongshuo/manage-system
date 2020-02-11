@@ -13,7 +13,7 @@
         </el-aside>
         <!-- 右侧内容区 -->
         <el-main>
-          <transition name="main">
+          <transition name="move" mode="out-in">
             <keep-alive>
                 <router-view v-if="$route.meta.isKeepLive"></router-view>
                 <router-view v-else></router-view>
@@ -41,10 +41,13 @@ export default {
     width: 100%;
     height: 100%;
   }
-.main-enter-active, .main-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to /* .main-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
+  .move-enter-active,
+  .move-leave-active {
+      transition: opacity .5s;
+  }
+
+  .move-enter,
+  .move-leave {
+      opacity: 0;
+  }
 </style>
